@@ -773,8 +773,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac20c07ccf5103a4bb88420e060a1bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.5
-  _rotSpeed: 1
+  speed: 0.5
+  rotSpeed: 1
+  stabSpeed: 0.5
+  minPitch: -60
+  maxPitch: 60
   model: {fileID: 1158380160}
 --- !u!114 &522461291
 MonoBehaviour:
