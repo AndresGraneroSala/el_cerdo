@@ -5,8 +5,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputActionReference  move;
     [SerializeField] private InputActionReference stabilizedMoveAction;
+    [SerializeField] private InputActionReference shootAction;
     [field: SerializeField] public Vector2 direction{get; private set;}
     [SerializeField] private Vector2 aerocrobatic;
+    [field: SerializeField] public bool isShooting {get; private set;}
     
     private PlayerMove _playerMove;
 
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour
         {
             _playerMove.Stablice();
         }
+        
+        isShooting = shootAction.action.ReadValue<float>() > 0;
         
     }
 }
