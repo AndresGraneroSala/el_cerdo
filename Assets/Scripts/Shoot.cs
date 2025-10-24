@@ -8,7 +8,7 @@ public class Shoot : MonoBehaviour
     private float _timer;
     private Pool _pool;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
         _playerController = GetComponent<PlayerController>();
         _pool = PoolManager.instance.GetPool("P_Bullets");

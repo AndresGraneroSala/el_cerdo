@@ -69,6 +69,28 @@ public class PoolManager : MonoBehaviour
         pool.init(parent, children);
         
     }
+    
+    private void OnValidate()
+    {
+        // Verifica nombres duplicados de pools en el inspector
+        HashSet<string> seenNames = new HashSet<string>();
+
+        foreach (var pool in pools)
+        {
+            if (pool == null) continue;
+
+            if (string.IsNullOrWhiteSpace(pool.poolName))
+            {
+                Debug.LogWarning($"[PoolManager] Hay un pool sin nombre asignado.");
+                continue;
+            }
+
+            if (!seenNames.Add(pool.poolName))
+            {
+                Debug.LogError($"[PoolManager] Nombre de pool duplicado detectado: '{pool.poolName}'");
+            }
+        }
+    }
 }
 
 [Serializable]
