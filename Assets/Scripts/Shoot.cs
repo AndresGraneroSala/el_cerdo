@@ -4,20 +4,25 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private float timeBetweenBullets = 0.1f;
-    private PlayerController _playerController;
     private float _timer;
     private Pool _pool;
+    private bool _isShooting;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _playerController = GetComponent<PlayerController>();
         _pool = PoolManager.instance.GetPool("P_Bullets");
     }
 
+    public void SetIsShooting(bool isShooting)
+    {
+        _isShooting = isShooting;
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        if (!_playerController.isShooting)
+        if (!_isShooting)
         {
             _timer = timeBetweenBullets;
             return; 
@@ -35,8 +40,5 @@ public class Shoot : MonoBehaviour
             
             _timer = 0;
         }
-        
-        
-        
     }
 }

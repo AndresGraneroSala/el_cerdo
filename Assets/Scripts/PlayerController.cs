@@ -1,33 +1,34 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputActionReference  move;
+    [SerializeField] private InputActionReference move;
     [SerializeField] private InputActionReference stabilizedMoveAction;
     [SerializeField] private InputActionReference shootAction;
-    [field: SerializeField] public Vector2 direction{get; private set;}
-    [SerializeField] private Vector2 aerocrobatic;
-    [field: SerializeField] public bool isShooting {get; private set;}
-    
+    private Vector2 aerocrobatic;
+
     private PlayerMove _playerMove;
+    private Shoot _shoot;
 
     private void Awake()
     {
         _playerMove = GetComponent<PlayerMove>();
+        _shoot = GetComponent<Shoot>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        direction = move.action.ReadValue<Vector2>();
+        _playerMove.SetDirection(move.action.ReadValue<Vector2>());
 
-        if (stabilizedMoveAction.action.ReadValue<float>()>0)
+        if (stabilizedMoveAction.action.ReadValue<float>() > 0)
         {
             _playerMove.Stablice();
         }
-        
-        isShooting = shootAction.action.ReadValue<float>() > 0;
-        
+
+        _shoot.SetIsShooting(shootAction.action.ReadValue<float>() > 0);
+
     }
 }

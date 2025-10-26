@@ -706,9 +706,6 @@ MonoBehaviour:
   move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   stabilizedMoveAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   shootAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  <direction>k__BackingField: {x: 0, y: 0}
-  aerocrobatic: {x: 0, y: 0}
-  <isShooting>k__BackingField: 0
 --- !u!114 &522461292
 MonoBehaviour:
   m_ObjectHideFlags: 0

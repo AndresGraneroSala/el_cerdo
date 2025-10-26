@@ -4,8 +4,6 @@ using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
-    private PlayerController _playerController;
-
     [SerializeField] private float speed = 5;
     [SerializeField] private float rotSpeed = 5;
     [SerializeField] private float stabSpeed = 0.5f;
@@ -13,11 +11,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] [Range(-360.0f, 360.0f)] private float maxPitch =  300f;
     [SerializeField] private GameObject model;
 
-    private void Awake()
-    {
-        _playerController = GetComponent<PlayerController>();
-    }
+    private Vector3 _direction;
 
+    public void SetDirection(Vector3 dir)
+    {
+        _direction = dir;
+    }
+    
     private void Start()
     {
         minPitch = VerifyAngle(minPitch);
@@ -32,7 +32,7 @@ public class PlayerMove : MonoBehaviour
         transform.position += transform.forward * speed;
 
         //rotation
-        Vector2 dir = _playerController.direction;
+        Vector2 dir = _direction;
         transform.Rotate(rotSpeed * dir.y, rotSpeed * dir.x, 0f, Space.Self);
 
         var euler = transform.eulerAngles;
@@ -75,7 +75,7 @@ public class PlayerMove : MonoBehaviour
 
     public void TmpAnim()
     {
-        model.transform.localRotation = Quaternion.Euler(-30 * _playerController.direction.x, -90, 0);
+        model.transform.localRotation = Quaternion.Euler(-30 * _direction.x, -90, 0);
     }
 
     public void Stablice()
