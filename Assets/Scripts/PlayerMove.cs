@@ -11,11 +11,31 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] [Range(-360.0f, 360.0f)] private float maxPitch =  300f;
     [SerializeField] private GameObject model;
 
-    private Vector3 _direction;
+    private Vector2 _direction;
 
-    public void SetDirection(Vector3 dir)
+    public void SetDirection(Vector2 dir)
     {
         _direction = dir;
+    }
+    
+    public void SetDirection(Vector3 worldDirection)
+    {
+        worldDirection = worldDirection.normalized;
+        
+        // 2. Convertir a espacio local
+        Vector3 localDir = transform.InverseTransformDirection(worldDirection);
+        
+        // 3. Calcular ángulos de rotación necesarios
+        float targetYaw = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
+        float targetPitch = -Mathf.Asin(localDir.y) * Mathf.Rad2Deg;
+        
+        // 4. Convertir a valores normalizados (-1 a 1)
+        Vector2 normalizedInput = new Vector2(
+            Mathf.Clamp(targetYaw / 90f, -1f, 1f),
+            Mathf.Clamp(targetPitch / 90f, -1f, 1f)
+        );
+        
+        _direction = normalizedInput;
     }
     
     private void Start()
