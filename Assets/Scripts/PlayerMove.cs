@@ -4,15 +4,33 @@ using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float speed = 5;
-    [SerializeField] private float rotSpeed = 5;
+    [SerializeField] private float speed = 5,speedAero=2;
+    [SerializeField] private float rotSpeed = 5,rotSpeedAero=10;
     [SerializeField] private float stabSpeed = 0.5f;
     [SerializeField] [Range(-360.0f, 360.0f)] private float minPitch = 60f;
     [SerializeField] [Range(-360.0f, 360.0f)] private float maxPitch =  300f;
     [SerializeField] private GameObject model;
 
     private Vector2 _direction;
+    private bool _isAero=false;
+    private float _currentXRotation = 0f;
+    private float _currentYRotation = 0f;
 
+    private float GetSpeed()
+    {
+        return _isAero? speedAero:speed;
+    }
+
+    private float GetSpeedRotation()
+    {
+        return _isAero? rotSpeedAero:rotSpeed;
+    }
+    
+    public void SetAero(bool isAero)
+    {
+        _isAero = isAero;
+    }
+    
     public void SetDirection(Vector2 dir)
     {
         _direction = dir;
@@ -51,6 +69,9 @@ public class PlayerMove : MonoBehaviour
     {
         minPitch = VerifyAngle(minPitch);
         maxPitch = VerifyAngle(maxPitch);
+        Vector3 currentEuler = transform.eulerAngles;
+        _currentXRotation = currentEuler.x;
+        _currentYRotation = currentEuler.y;
     }
 
 
@@ -58,19 +79,22 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //constant move
-        transform.position += transform.forward * speed;
+        transform.position += transform.forward * GetSpeed();
 
-        //rotation
+        //rotation quads
         Vector2 dir = _direction;
-        transform.Rotate(rotSpeed * dir.y, rotSpeed * dir.x, 0f, Space.Self);
-
-        var euler = transform.eulerAngles;
-        euler.z = 0f;
-
-        euler.x = ClampAngle360(euler.x, minPitch, maxPitch);
-        
-        transform.eulerAngles = euler;
-
+    
+        _currentXRotation += GetSpeedRotation() * dir.y;
+        _currentYRotation += GetSpeedRotation() * dir.x;
+    
+        if (!_isAero)
+        {
+            _currentXRotation = ClampAngle360(_currentXRotation, minPitch, maxPitch);
+        }
+    
+        Quaternion newRotation = Quaternion.Euler(_currentXRotation, _currentYRotation, 0f);
+    
+        transform.rotation = newRotation;
 
         TmpAnim();
     }
@@ -109,8 +133,8 @@ public class PlayerMove : MonoBehaviour
 
     public void Stablice()
     {
-        Vector3 currentRotation = transform.eulerAngles;
-        float newX = Mathf.LerpAngle(currentRotation.x, 0f, Time.fixedDeltaTime * stabSpeed);
-        transform.eulerAngles = new Vector3(newX, currentRotation.y, currentRotation.z);
+        float newX = Mathf.LerpAngle(_currentXRotation, 0f, Time.fixedDeltaTime * stabSpeed);
+        _currentXRotation = newX;
+        transform.rotation = Quaternion.Euler(_currentXRotation, _currentYRotation, 0f);
     }
 }

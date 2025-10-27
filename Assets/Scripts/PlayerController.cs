@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputActionReference move;
+    [SerializeField] private InputActionReference aerocrobaticAction;
     [SerializeField] private InputActionReference stabilizedMoveAction;
     [SerializeField] private InputActionReference shootAction;
-    private Vector2 aerocrobatic;
 
     private PlayerMove _playerMove;
     private Shoot _shoot;
@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     {
         _playerMove = GetComponent<PlayerMove>();
         _shoot = GetComponent<Shoot>();
+        aerocrobaticAction.action.Enable();
+
     }
 
     // Update is called once per frame
@@ -30,5 +32,6 @@ public class PlayerController : MonoBehaviour
 
         _shoot.SetIsShooting(shootAction.action.ReadValue<float>() > 0);
 
+        _playerMove.SetAero(aerocrobaticAction.action.ReadValue<float>()>0);
     }
 }

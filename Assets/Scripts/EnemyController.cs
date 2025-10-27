@@ -77,7 +77,6 @@ public class EnemyController : MonoBehaviour
         {
             _indexPatrol = (_indexPatrol + 1) % patrolTargets.Length;
             _target = patrolTargets[_indexPatrol];
-            print("next");
         }
         
         
