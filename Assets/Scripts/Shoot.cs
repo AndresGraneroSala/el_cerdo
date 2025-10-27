@@ -4,6 +4,9 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private float timeBetweenBullets = 0.1f;
+    [SerializeField] private string poolName;
+    [SerializeField] private int poolSize;
+    [SerializeField] private GameObject bulletPrefab;
     private float _timer;
     private Pool _pool;
     private bool _isShooting;
@@ -11,7 +14,7 @@ public class Shoot : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _pool = PoolManager.instance.GetPool("P_Bullets");
+        _pool = PoolManager.instance.GetPool(poolName, poolSize,bulletPrefab);
     }
 
     public void SetIsShooting(bool isShooting)

@@ -26,7 +26,7 @@ public class PoolManager : MonoBehaviour
         
     }
 
-    public Pool GetPool(String poolName)
+    public Pool GetPool(String poolName, int poolSize = 50, GameObject poolPrefab = null)
     {
         for (int i = 0; i < pools.Count; i++)
         {
@@ -35,8 +35,17 @@ public class PoolManager : MonoBehaviour
                 return pools[i];
             }
         }
-        
-        return null;
+
+        if (poolPrefab == null)
+        {
+            Debug.LogError($"[PoolManager] No se puede crear pool '{poolName}': prefab es null");
+            return null;
+        }
+
+
+        Pool p = new Pool(poolName, poolSize, poolPrefab);
+        AddPool(p);
+        return p;
     }
 
     public void AddPool(Pool pool)
@@ -103,10 +112,11 @@ public class Pool
     private int index=0;
     private Transform parent;
 
-    Pool(string poolName, int poolSize)
+    public Pool(string poolName, int poolSize, GameObject prefab)
     {
         this.poolName = poolName;
         this.poolSize = poolSize;
+        this.prefab = prefab;
     }
     
     public void init(Transform parent, List<GameObject> objects)

@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     private float _timer;
     private Pool _pool;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
         _pool = PoolManager.instance.GetPool(poolName);
     }

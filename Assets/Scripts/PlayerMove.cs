@@ -17,6 +17,15 @@ public class PlayerMove : MonoBehaviour
     {
         _direction = dir;
     }
+
+    public void SetSpeed(float speed)
+    {
+        if (speed < 0f)
+        {
+            return;
+        }
+        this.speed = speed;
+    }
     
     public void SetDirection(Vector3 worldDirection)
     {
