@@ -15,7 +15,9 @@ public class PlayerMove : MonoBehaviour
     private bool _isAero=false;
     private float _currentXRotation = 0f;
     private float _currentYRotation = 0f;
-
+    [SerializeField] private bool _notBlockWas=false;
+    private const float AngleEpsilon = 1;
+    
     private float GetSpeed()
     {
         return _isAero? speedAero:speed;
@@ -29,6 +31,11 @@ public class PlayerMove : MonoBehaviour
     public void SetAero(bool isAero)
     {
         _isAero = isAero;
+
+        if (isAero)
+        {
+            _notBlockWas = true;
+        }
     }
     
     public void SetDirection(Vector2 dir)
@@ -86,12 +93,27 @@ public class PlayerMove : MonoBehaviour
     
         _currentXRotation += GetSpeedRotation() * dir.y;
         _currentYRotation += GetSpeedRotation() * dir.x;
-    
+
         if (!_isAero)
         {
-            _currentXRotation = ClampAngle360(_currentXRotation, minPitch, maxPitch);
+            float x = ClampAngle360(_currentXRotation, minPitch, maxPitch);
+
+            if (_notBlockWas)
+            {
+                if (Mathf.Abs(x - _currentXRotation) < AngleEpsilon)
+                {
+                    _notBlockWas = false;
+                }
+            }
+
+            if (!_notBlockWas)
+            {
+                _currentXRotation = x;
+            }
+            
+            
         }
-    
+
         Quaternion newRotation = Quaternion.Euler(_currentXRotation, _currentYRotation, 0f);
     
         transform.rotation = newRotation;
@@ -100,32 +122,28 @@ public class PlayerMove : MonoBehaviour
     }
     
     float ClampAngle360(float angle, float min, float max)
-    {
-        // Normalizar todos los ángulos
-        float normalizedAngle = Mathf.DeltaAngle(0, angle);
-        float normalizedMin = Mathf.DeltaAngle(0, min);
-        float normalizedMax = Mathf.DeltaAngle(0, max);
+{ 
+    float normalizedAngle = Mathf.DeltaAngle(0, angle);
+    float normalizedMin = Mathf.DeltaAngle(0, min);
+    float normalizedMax = Mathf.DeltaAngle(0, max);
     
-        if (normalizedMin < normalizedMax)
-        {
-            // Rango normal
-            if (normalizedAngle < normalizedMin) return min;
-            if (normalizedAngle > normalizedMax) return max;
-            return angle;
-        }
-        else
-        {
-            // Rango que cruza el límite 180/-180
-            if (normalizedAngle > normalizedMax && normalizedAngle < normalizedMin)
-            {
-                // El ángulo está en la zona prohibida
-                float distToMin = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMin));
-                float distToMax = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMax));
-                return distToMin < distToMax ? min : max;
-            }
-            return angle;
-        }
+    if (normalizedMin < normalizedMax)
+    {
+        if (normalizedAngle < normalizedMin) return min;
+        if (normalizedAngle > normalizedMax) return max;
+        return angle;
     }
+    else
+    {
+        if (normalizedAngle > normalizedMax && normalizedAngle < normalizedMin)
+        {
+            float distToMin = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMin));
+            float distToMax = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMax));
+            return distToMin < distToMax ? min : max;
+        }
+        return angle;
+    }
+}
 
     float VerifyAngle(float angle)
     {
