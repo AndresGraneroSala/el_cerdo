@@ -101,21 +101,30 @@ public class PlayerMove : MonoBehaviour
     
     float ClampAngle360(float angle, float min, float max)
     {
-        if (min < max)
+        // Normalizar todos los ángulos
+        float normalizedAngle = Mathf.DeltaAngle(0, angle);
+        float normalizedMin = Mathf.DeltaAngle(0, min);
+        float normalizedMax = Mathf.DeltaAngle(0, max);
+    
+        if (normalizedMin < normalizedMax)
         {
-            if (angle < min) angle = min;
-            if (angle > max) angle = max;
+            // Rango normal
+            if (normalizedAngle < normalizedMin) return min;
+            if (normalizedAngle > normalizedMax) return max;
+            return angle;
         }
         else
         {
-            if (angle > max && angle < min)
+            // Rango que cruza el límite 180/-180
+            if (normalizedAngle > normalizedMax && normalizedAngle < normalizedMin)
             {
-                float distToMin = Mathf.DeltaAngle(angle, min);
-                float distToMax = Mathf.DeltaAngle(angle, max);
-                angle = Mathf.Abs(distToMin) < Mathf.Abs(distToMax) ? min : max;
+                // El ángulo está en la zona prohibida
+                float distToMin = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMin));
+                float distToMax = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMax));
+                return distToMin < distToMax ? min : max;
             }
+            return angle;
         }
-        return angle;
     }
 
     float VerifyAngle(float angle)
