@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 880582714661922404}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   proximityRange: 2
-  distanceForget: 200
+  distanceForget: 99999200
 --- !u!114 &4918617829383430496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,11 +93,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+  speedAero: 2
   rotSpeed: 1
+  rotSpeedAero: 10
   stabSpeed: 0.5
   minPitch: -60
   maxPitch: 60
   model: {fileID: 3914873244403284419}
+  _notBlockWas: 0
 --- !u!114 &880582714661922404
 MonoBehaviour:
   m_ObjectHideFlags: 0
