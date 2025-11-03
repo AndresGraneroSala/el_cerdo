@@ -11,23 +11,23 @@ public class EnemyController : MonoBehaviour
     }
     
     [SerializeField] private float moveSpeed = 0.5f, patrolSpeed = 0.1f;
-    
     [SerializeField] private Transform [] patrolTargets;
     [SerializeField] private float proximityRange=1f;
     [SerializeField] private float distanceForget = 20;
+    [SerializeField] private float distanceToAttack = 10;
     private int _indexPatrol=0;
     private EnemyState _enemyState;
     private Transform _target;
     private Shoot _shoot;
     private PlayerMove _move;
     private bool _isInVision;
-
+    private float _distanceToTarget;
+    
     public void SetIsInVision( bool isInVision )
     {
         _isInVision = isInVision;
     }
     
-
     private void Awake()
     {
         _shoot = GetComponent<Shoot>();
@@ -39,6 +39,11 @@ public class EnemyController : MonoBehaviour
     {
         _target = patrolTargets[_indexPatrol];
         _move.SetSpeed(patrolSpeed);
+    }
+
+    private void LateUpdate()
+    {
+        _distanceToTarget = Vector3.Distance(transform.position, _target.position);
     }
 
     // Update is called once per frame
@@ -62,7 +67,6 @@ public class EnemyController : MonoBehaviour
 
     private void StatePatrol()
     {
-        //to follow
         if (_isInVision)
         {
             _enemyState = EnemyState.Follow;
@@ -71,36 +75,41 @@ public class EnemyController : MonoBehaviour
             return;
         }
         
-        float distance = Vector3.Distance(transform.position, _target.position);
-
-        if (distance < proximityRange)
+        if (_distanceToTarget < proximityRange)
         {
             _indexPatrol = (_indexPatrol + 1) % patrolTargets.Length;
             _target = patrolTargets[_indexPatrol];
         }
-        
-        
     }
     
     private void StateFollow()
     {
-        float distance = Vector3.Distance(transform.position, _target.position);
-
-        if (distance > distanceForget)
+        if (_distanceToTarget >= distanceForget)
         {
             _move.SetSpeed(patrolSpeed);
             _enemyState = EnemyState.Patrol;
             _target = patrolTargets[_indexPatrol];
         }
 
+        if (_distanceToTarget<=distanceToAttack)
+        {
+            StateAttack();
+            _move.SetAero(true);
+            _enemyState = EnemyState.Attack;
+        }
     }
 
    
 
     private void StateAttack()
     {
-        //_move.SetSpeed(patrolSpeed);
-
+        _shoot.SetIsShooting(_isInVision);
+        
+        if (_distanceToTarget > distanceToAttack)
+        {
+            _enemyState = EnemyState.Follow;
+            _move.SetAero(false);
+        }
     }
 
     private void FollowTarget()

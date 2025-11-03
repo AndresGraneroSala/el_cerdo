@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class EnemyVision : MonoBehaviour
 {
-    [Header("Field of View Settings")]
+    [Header("Vision Settings")]
     public float viewDistance = 20f;
     public float viewAngle = 45f;
     public float maxHeightDifference = 5f;
 
     [Header("Close Range Detection")]
-    public float closeRangeDistance = 5f;  // rango del raycast corto
-
+    public float closeRangeDistance = 5f; 
     [Header("Layers")]
     public LayerMask targetMask;
     public LayerMask obstacleMask;
@@ -31,9 +30,6 @@ public class EnemyVision : MonoBehaviour
     {
         bool playerDetected = false;
 
-        // --------------------------
-        // 1️⃣ DETECCIÓN POR PIRÁMIDE
-        // --------------------------
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewDistance, targetMask);
 
         foreach (Collider target in targetsInViewRadius)
@@ -41,18 +37,15 @@ public class EnemyVision : MonoBehaviour
             Vector3 dirToTarget = target.transform.position - transform.position;
             float distanceToTarget = dirToTarget.magnitude;
 
-            // Verificar altura
             float heightDifference = Mathf.Abs(dirToTarget.y);
             if (heightDifference > maxHeightDifference)
                 continue;
 
-            // Verificar ángulo horizontal
             Vector3 dirToTargetXZ = new Vector3(dirToTarget.x, 0, dirToTarget.z);
             float angleToTarget = Vector3.Angle(transform.forward, dirToTargetXZ);
 
             if (angleToTarget < viewAngle / 2)
             {
-                // Chequear si hay obstáculos
                 if (!Physics.Raycast(transform.position, dirToTarget.normalized, distanceToTarget, obstacleMask))
                 {
                     playerDetected = true;
@@ -60,25 +53,19 @@ public class EnemyVision : MonoBehaviour
                 }
             }
         }
-
-        // --------------------------
-        // 2️⃣ DETECCIÓN POR RAY CORTO
-        // --------------------------
+        
         if (!playerDetected)
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, closeRangeDistance, targetMask))
             {
-                // Si hay contacto directo con el jugador
                 playerDetected = true;
             }
         }
 
         _controller.SetIsInVision(playerDetected);
     }
-
-    // --------------------------
-    // 4️⃣ GIZMOS VISUALES
-    // --------------------------
+    
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
