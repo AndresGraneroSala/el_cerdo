@@ -1870,11 +1870,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448ba86153bab2e4e8bb21f4e2de94d4, type: 3}
---- !u!1 &1778467002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3914873244403284419, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-  m_PrefabInstance: {fileID: 2228317434911245567}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1794514878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,10 +2252,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: moveSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
       propertyPath: 'patrolTargets.Array.data[0]'
       value: 
       objectReference: {fileID: 1165899767}
@@ -2279,30 +2270,6 @@ PrefabInstance:
     - target: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 1778467002}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: maxSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: rotSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: speedAero
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: rotSpeedAero
-      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7463696225815938589, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2347,30 +2314,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2228317434911245569}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
---- !u!1 &2228317434911245568 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-  m_PrefabInstance: {fileID: 2228317434911245567}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2228317434911245569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228317434911245568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35fd54ac079a8b47aa6549789157333, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iconPrefab: {fileID: 4922837886278913688, guid: fad9decd675be22a4bd774625926f54f, type: 3}
-  clampOnRadar: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
