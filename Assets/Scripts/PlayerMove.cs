@@ -4,7 +4,8 @@ using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float speed = 5,speedAero=2;
+    [SerializeField] private float maxSpeed = 5,intervalSpeed=0.1f;
+    [SerializeField] private float speedAero=2;
     [SerializeField] private float rotSpeed = 5,rotSpeedAero=10;
     [SerializeField] private float stabSpeed = 0.5f;
     [SerializeField] [Range(-360.0f, 360.0f)] private float minPitch = 60f;
@@ -17,15 +18,42 @@ public class PlayerMove : MonoBehaviour
     private float _currentYRotation = 0f;
     [SerializeField] private bool _notBlockWas=false;
     private const float AngleEpsilon = 1;
+    private float _speed;
     
     private float GetSpeed()
     {
-        return _isAero? speedAero:speed;
+        return _isAero? speedAero:_speed;
     }
 
     private float GetSpeedRotation()
     {
         return _isAero? rotSpeedAero:rotSpeed;
+    }
+
+    public void ChangeSpeed(bool up)
+    {
+        if (up)
+        {
+            IncreaseSpeed();
+        }
+        else
+        {
+            DecreaseSpeed();
+        }
+
+        _speed = Mathf.Clamp(_speed,0,maxSpeed);
+        
+        print(_speed);
+    }
+    
+    private void IncreaseSpeed()
+    {
+        _speed += intervalSpeed;
+    }
+
+    private void DecreaseSpeed()
+    {
+        _speed -= intervalSpeed;
     }
     
     public void SetAero(bool isAero)
@@ -49,7 +77,7 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
-        this.speed = speed;
+        maxSpeed = speed;
     }
     
     public void SetDirection(Vector3 worldDirection)
@@ -79,6 +107,8 @@ public class PlayerMove : MonoBehaviour
         Vector3 currentEuler = transform.eulerAngles;
         _currentXRotation = currentEuler.x;
         _currentYRotation = currentEuler.y;
+        
+        _speed = maxSpeed;
     }
 
 
