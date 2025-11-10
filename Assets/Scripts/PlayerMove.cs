@@ -4,32 +4,38 @@ using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float maxSpeed = 5,intervalSpeed=0.1f;
-    [SerializeField] private float speedAero=2;
-    [SerializeField] private float rotSpeed = 5,rotSpeedAero=10;
+    [SerializeField] private float maxSpeed = 5, intervalSpeed = 0.1f;
+    [SerializeField] private float speedAero = 2;
+    [SerializeField] private float rotSpeed = 5, rotSpeedAero = 10;
     [SerializeField] private float stabSpeed = 0.5f;
-    [SerializeField] [Range(-360.0f, 360.0f)] private float minPitch = 60f;
-    [SerializeField] [Range(-360.0f, 360.0f)] private float maxPitch =  300f;
+
+    [SerializeField] [Range(-360.0f, 360.0f)]
+    private float minPitch = 60f;
+
+    [SerializeField] [Range(-360.0f, 360.0f)]
+    private float maxPitch = 300f;
+
     [SerializeField] private GameObject model;
 
+    [SerializeField] private RectTransform imageSpeed;
     private Vector2 _direction;
-    private bool _isAero=false;
+    private bool _isAero = false;
     private float _currentXRotation = 0f;
     private float _currentYRotation = 0f;
-    [SerializeField] private bool _notBlockWas=false;
+    [SerializeField] private bool _notBlockWas = false;
     private const float AngleEpsilon = 1;
     private float _speed;
 
-    private bool _isInFloor=false;
-    
+    private bool _isInFloor = false;
+
     private float GetSpeed()
     {
-        return _isAero? speedAero:_speed;
+        return _isAero ? speedAero : _speed;
     }
 
     private float GetSpeedRotation()
     {
-        return _isAero? rotSpeedAero:rotSpeed;
+        return _isAero ? rotSpeedAero : rotSpeed;
     }
 
     public void ChangeSpeed(bool up)
@@ -43,9 +49,11 @@ public class PlayerMove : MonoBehaviour
             DecreaseSpeed();
         }
 
-        _speed = Mathf.Clamp(_speed,0,maxSpeed);
+        _speed = Mathf.Clamp(_speed, 0, maxSpeed);
+        
+        SetUISpeed();
     }
-    
+
     private void IncreaseSpeed()
     {
         _speed += intervalSpeed;
@@ -55,7 +63,7 @@ public class PlayerMove : MonoBehaviour
     {
         _speed -= intervalSpeed;
     }
-    
+
     public void SetAero(bool isAero)
     {
         _isAero = isAero;
@@ -65,7 +73,7 @@ public class PlayerMove : MonoBehaviour
             _notBlockWas = true;
         }
     }
-    
+
     public void SetDirection(Vector2 dir)
     {
         _direction = dir;
@@ -77,29 +85,30 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
+
         maxSpeed = speed;
     }
-    
+
     public void SetDirection(Vector3 worldDirection)
     {
         worldDirection = worldDirection.normalized;
-        
+
         // 2. Convertir a espacio local
         Vector3 localDir = transform.InverseTransformDirection(worldDirection);
-        
+
         // 3. Calcular ángulos de rotación necesarios
         float targetYaw = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
         float targetPitch = -Mathf.Asin(localDir.y) * Mathf.Rad2Deg;
-        
+
         // 4. Convertir a valores normalizados (-1 a 1)
         Vector2 normalizedInput = new Vector2(
             Mathf.Clamp(targetYaw / 90f, -1f, 1f),
             Mathf.Clamp(targetPitch / 90f, -1f, 1f)
         );
-        
+
         _direction = normalizedInput;
     }
-    
+
     private void Start()
     {
         minPitch = VerifyAngle(minPitch);
@@ -107,7 +116,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 currentEuler = transform.eulerAngles;
         _currentXRotation = currentEuler.x;
         _currentYRotation = currentEuler.y;
-        
+
         _speed = maxSpeed;
     }
 
@@ -118,19 +127,19 @@ public class PlayerMove : MonoBehaviour
         //constant move
         transform.position += transform.forward * GetSpeed();
 
-        
+
         //rotation quads
         Vector2 dir = _direction;
-    
+
         _currentXRotation += GetSpeedRotation() * dir.y;
         _currentYRotation += GetSpeedRotation() * dir.x;
 
-        
+
         if (_isInFloor && dir.y >= 0)
         {
-            _currentXRotation = Mathf.Lerp(_currentYRotation, 0f,  5f);
+            _currentXRotation = Mathf.Lerp(_currentYRotation, 0f, 5f);
         }
-        
+
         if (!_isAero)
         {
             float x = ClampAngle360(_currentXRotation, minPitch, maxPitch);
@@ -147,44 +156,45 @@ public class PlayerMove : MonoBehaviour
             {
                 _currentXRotation = x;
             }
-            
-            
+
+
         }
 
         Quaternion newRotation = Quaternion.Euler(_currentXRotation, _currentYRotation, 0f);
-    
+
         transform.rotation = newRotation;
 
         TmpAnim();
     }
-    
+
     float ClampAngle360(float angle, float min, float max)
-{ 
-    float normalizedAngle = Mathf.DeltaAngle(0, angle);
-    float normalizedMin = Mathf.DeltaAngle(0, min);
-    float normalizedMax = Mathf.DeltaAngle(0, max);
-    
-    if (normalizedMin < normalizedMax)
     {
-        if (normalizedAngle < normalizedMin) return min;
-        if (normalizedAngle > normalizedMax) return max;
-        return angle;
-    }
-    else
-    {
-        if (normalizedAngle > normalizedMax && normalizedAngle < normalizedMin)
+        float normalizedAngle = Mathf.DeltaAngle(0, angle);
+        float normalizedMin = Mathf.DeltaAngle(0, min);
+        float normalizedMax = Mathf.DeltaAngle(0, max);
+
+        if (normalizedMin < normalizedMax)
         {
-            float distToMin = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMin));
-            float distToMax = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMax));
-            return distToMin < distToMax ? min : max;
+            if (normalizedAngle < normalizedMin) return min;
+            if (normalizedAngle > normalizedMax) return max;
+            return angle;
         }
-        return angle;
+        else
+        {
+            if (normalizedAngle > normalizedMax && normalizedAngle < normalizedMin)
+            {
+                float distToMin = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMin));
+                float distToMax = Mathf.Abs(Mathf.DeltaAngle(normalizedAngle, normalizedMax));
+                return distToMin < distToMax ? min : max;
+            }
+
+            return angle;
+        }
     }
-}
 
     float VerifyAngle(float angle)
     {
-        angle %= 360f;               
+        angle %= 360f;
         if (angle < 0f) angle += 360f;
         return angle;
     }
@@ -215,5 +225,23 @@ public class PlayerMove : MonoBehaviour
         if (other.CompareTag("Floor"))
         {
             _isInFloor = false;
-        }    }
+        }
+    }
+
+
+    public void SetUISpeed()
+    {
+        if (imageSpeed == null)
+        {
+            return;
+        }
+        
+        float scaleX = GetSpeed() / maxSpeed;
+
+        
+        Vector3 scale = imageSpeed.localScale;
+        scale.x = scaleX;
+        imageSpeed.localScale = scale;
+
+    }
 }
