@@ -19,6 +19,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private bool _notBlockWas=false;
     private const float AngleEpsilon = 1;
     private float _speed;
+
+    private bool _isInFloor=false;
     
     private float GetSpeed()
     {
@@ -42,8 +44,6 @@ public class PlayerMove : MonoBehaviour
         }
 
         _speed = Mathf.Clamp(_speed,0,maxSpeed);
-        
-        print(_speed);
     }
     
     private void IncreaseSpeed()
@@ -118,12 +118,19 @@ public class PlayerMove : MonoBehaviour
         //constant move
         transform.position += transform.forward * GetSpeed();
 
+        
         //rotation quads
         Vector2 dir = _direction;
     
         _currentXRotation += GetSpeedRotation() * dir.y;
         _currentYRotation += GetSpeedRotation() * dir.x;
 
+        
+        if (_isInFloor && dir.y >= 0)
+        {
+            _currentXRotation = Mathf.Lerp(_currentYRotation, 0f,  5f);
+        }
+        
         if (!_isAero)
         {
             float x = ClampAngle360(_currentXRotation, minPitch, maxPitch);
@@ -194,4 +201,19 @@ public class PlayerMove : MonoBehaviour
         _currentXRotation = newX;
         transform.rotation = Quaternion.Euler(_currentXRotation, _currentYRotation, 0f);
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Floor"))
+        {
+            _isInFloor = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Floor"))
+        {
+            _isInFloor = false;
+        }    }
 }
