@@ -135,9 +135,11 @@ public class PlayerMove : MonoBehaviour
         _currentYRotation += GetSpeedRotation() * dir.x;
 
 
-        if (_isInFloor && dir.y >= 0)
+        if (_isInFloor)
         {
             _currentXRotation = Mathf.Lerp(_currentYRotation, 0f, 5f);
+            transform.position += new Vector3(0, 0.2f, 0);
+
         }
 
         if (!_isAero)

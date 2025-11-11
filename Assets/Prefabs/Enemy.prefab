@@ -103,6 +103,7 @@ MonoBehaviour:
   minPitch: -60
   maxPitch: 60
   model: {fileID: 3914873244403284419}
+  imageSpeed: {fileID: 0}
   _notBlockWas: 0
 --- !u!114 &880582714661922404
 MonoBehaviour:
@@ -120,7 +121,7 @@ MonoBehaviour:
   timeBetweenBullets: 0.1
   poolName: P_Bullets
   poolSize: 50
-  bulletPrefab: {fileID: 6602436439817404888, guid: bb9ed243078255084b72ef9b928cc1a5, type: 3}
+  bulletPrefab: {fileID: 6602436439817404888, guid: 6f30ab94ac3d38676a1de670ba79b3b8, type: 3}
 --- !u!114 &4195265828376362269
 MonoBehaviour:
   m_ObjectHideFlags: 0

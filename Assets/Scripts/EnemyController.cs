@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float proximityRange=1f;
     [SerializeField] private float distanceForget = 20;
     [SerializeField] private float distanceToAttack = 10;
+    [FormerlySerializedAs("radiusDetection")] [SerializeField] private float distanceDetection = 50;
     private int _indexPatrol=0;
     private EnemyState _enemyState;
     private Transform _target;
@@ -67,7 +69,10 @@ public class EnemyController : MonoBehaviour
 
     private void StatePatrol()
     {
-        if (_isInVision)
+        float distanceToPlayer = Vector3.Distance(transform.position, _target.position);
+        
+        
+        if (_isInVision || distanceToPlayer <= distanceDetection)
         {
             _enemyState = EnemyState.Follow;
             _move.SetSpeed(moveSpeed);
