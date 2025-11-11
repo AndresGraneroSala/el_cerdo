@@ -11,9 +11,7 @@ public class Balloon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.tag);
-        
-        //porque si no me detecta más de uno como van muy rápidas las balas y son varias pues eso  
+        //un if porque si no me detecta más de uno como van muy rápidas las balas y son varias eso es malo 
         if (exploded)
         {
             print("ex");
