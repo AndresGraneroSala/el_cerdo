@@ -74,9 +74,15 @@ public class EnemyController : MonoBehaviour
         
         if (_isInVision || distanceToPlayer <= distanceDetection)
         {
+            if (GameManager.Instance.Player==null)
+            {
+                //al ser en el update se puede ejecutar antes de que se asigne en un cambio de escena
+                return;
+            }
+            
             _enemyState = EnemyState.Follow;
             _move.SetSpeed(moveSpeed);
-            _target = GameManager.Instance.player.transform;
+            _target = GameManager.Instance.Player.transform;
             return;
         }
         

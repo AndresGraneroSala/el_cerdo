@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     
-    public GameObject player {get; private set;}
+    public GameObject Player {get; private set;}
     
     
     
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
         
     }
 }
