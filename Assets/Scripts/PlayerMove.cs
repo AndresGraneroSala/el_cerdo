@@ -203,16 +203,17 @@ public class PlayerMove : MonoBehaviour
 
     private void SetUISpeed()
     {
-        if (speedUI == null)
+        if (!speedUI)
         {
             return;
         }
+        
 
         aeroUI.SetActive(_isAero);
         speedUI.SetActive(!_isAero);
 
 
-        RectTransform image = _isAero ? imageAero : model.GetComponent<RectTransform>();
+        RectTransform image = _isAero ? imageAero : imageSpeed;
 
 
         if (!image)
