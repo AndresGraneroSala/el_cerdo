@@ -2551,11 +2551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2537d84d38e066d45b2f9929221fe61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Balloon
---- !u!1 &1289924705 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-  m_PrefabInstance: {fileID: 1922291610}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1323286230
 GameObject:
   m_ObjectHideFlags: 0
@@ -3444,30 +3439,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1155633087}
     m_Modifications:
     - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: moveSpeed
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: distanceForget
-      value: 1e+21
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: proximityRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: radiusDetection
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: distanceDetection
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: patrolTargets.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045710381506375150, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
       propertyPath: 'patrolTargets.Array.data[0]'
       value: 
       objectReference: {fileID: 1368828939}
@@ -3486,26 +3457,6 @@ PrefabInstance:
     - target: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: rotSpeed
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918617829383430496, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: speedAero
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7463696225815938589, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7463696225815938589, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7463696225815938589, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7463696225815938589, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3547,89 +3498,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8800515875558035579, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      propertyPath: closeRangeDistance
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1922291619}
-    - targetCorrespondingSourceObject: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1922291618}
-    - targetCorrespondingSourceObject: {fileID: 3387770903937268442, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1922291617}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
 --- !u!4 &1922291611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7463696225815938589, guid: 26047c9f9eb9f5249be71244aec77afa, type: 3}
   m_PrefabInstance: {fileID: 1922291610}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1922291617
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289924705}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 0
-  m_ImplicitTensor: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!65 &1922291618
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289924705}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7326444, y: 1, z: 1.4488174}
-  m_Center: {x: 0.06790266, y: 2.9552638e-11, z: -0.0074756145}
---- !u!114 &1922291619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289924705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2537d84d38e066d45b2f9929221fe61a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Balloon
 --- !u!1 &1944881613
 GameObject:
   m_ObjectHideFlags: 0

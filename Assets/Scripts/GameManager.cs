@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
 
     private String GetNextScore()
     {
+        string phrase = "";
+        
         if (timesRanks == null || timesRanks.Length == 0)
         {
             return "No scores defined";
@@ -97,15 +99,18 @@ public class GameManager : MonoBehaviour
             indexScore = i;
             break;
         }
-        
+
+        phrase += $"{phrasePlayerScoreObtained} {IntToTime((int)_timer)}. ";
         if (indexScore == 0)
         {
-            return "";
+            return phrase;
         }
 
         int score = timesRanks[indexScore] - timesRanks[indexScore - 1];
 
-        return $"{phrasePlayerScoreObtained} {IntToTime((int)_timer)}. {phraseNextScore} {IntToTime(score)}";
+        phrase += $"{phraseNextScore} {IntToTime(score)}";
+        
+        return phrase;
     }
 
     private string IntToTime(int totalSeconds)

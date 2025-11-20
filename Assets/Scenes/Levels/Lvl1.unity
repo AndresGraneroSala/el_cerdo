@@ -3614,6 +3614,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 254993130845012176, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_text
+      value: "Tu puntuaci\xF3n es de 00:25. Para el siguiente rango haz 01:28"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822931520484811066, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822931520484811066, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822931520484811066, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822931520484811066, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -579.32996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822931520484811066, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822931520484811066, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 68.994995
+      objectReference: {fileID: 0}
     - target: {fileID: 4464314271215428365, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -3661,6 +3689,70 @@ PrefabInstance:
     - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: sceneNextLevel
       value: Lvl2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: phraseNextScore
+      value: Para el siguiente rango haz
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: phrasePlayerScoreObtained
+      value: "Tu puntuaci\xF3n es de"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240167132120054685, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240167132120054685, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240167132120054685, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240167132120054685, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -579.32996
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240167132120054685, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240167132120054685, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 289.66498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545329560839917121, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545329560839917121, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545329560839917121, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545329560839917121, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -441.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545329560839917121, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545329560839917121, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -220.67004
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655693098049886736, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1785.4578
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655693098049886736, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7389645514382982037, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
