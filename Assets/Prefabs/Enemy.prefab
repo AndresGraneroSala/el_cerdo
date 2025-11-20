@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7463696225815938589}
-  - component: {fileID: 8800515875558035579}
+  - component: {fileID: 2118276618088762910}
   - component: {fileID: 1045710381506375150}
-  - component: {fileID: 4918617829383430496}
   - component: {fileID: 880582714661922404}
   - component: {fileID: 4195265828376362269}
   - component: {fileID: 2239020317584936455}
@@ -39,10 +38,9 @@ Transform:
   m_Children:
   - {fileID: 4404446587026596729}
   - {fileID: 3134221000480677349}
-  - {fileID: 5225994662899014166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -11.478, y: 0, z: 0}
---- !u!114 &8800515875558035579
+--- !u!114 &2118276618088762910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,10 +49,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3387770903937268442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8032b105b8955c44e904b80a4a48e31f, type: 3}
+  m_Script: {fileID: 11500000, guid: 80ee241dc03915a4c950a4cf72059baa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyVision
-  _controller: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
+  rotationSpeed: 30
 --- !u!114 &1045710381506375150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3675b87aab2abe446862b03308964cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  moveSpeed: 1.2
+  moveSpeed: 25
   patrolSpeed: 0.1
   patrolTargets:
   - {fileID: 0}
@@ -75,32 +73,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   proximityRange: 2
-  distanceForget: 1e+21
-  distanceToAttack: 10
-  distanceDetection: 100
---- !u!114 &4918617829383430496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3387770903937268442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac20c07ccf5103a4bb88420e060a1bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 1
-  intervalSpeed: 0.1
-  speedAero: 0.5
-  rotSpeed: 0.8
-  rotSpeedAero: 2.5
-  stabSpeed: 0.5
-  minPitch: -60
-  maxPitch: 60
-  model: {fileID: 3914873244403284419}
-  imageSpeed: {fileID: 0}
-  _notBlockWas: 0
+  distanceForget: 900
+  detectionBoxSize: {x: 5, y: 5, z: 20}
+  attackRange: 5
 --- !u!114 &880582714661922404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,60 +166,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!1 &5658897312641493830
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5225994662899014166}
-  - component: {fileID: 555648959606328130}
-  m_Layer: 0
-  m_Name: Vision
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5225994662899014166
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5658897312641493830}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7463696225815938589}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &555648959606328130
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5658897312641493830}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5, y: 5, z: 12.790857}
-  m_Center: {x: 0, y: 0, z: 7.0473695}
+  m_CollisionDetection: 1
 --- !u!1 &6719465600574861119
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,11 +336,6 @@ PrefabInstance:
       addedObject: {fileID: 1363615510061752810}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86060ed036799524b91f4fba5ca6ff37, type: 3}
---- !u!1 &3914873244403284419 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 86060ed036799524b91f4fba5ca6ff37, type: 3}
-  m_PrefabInstance: {fileID: 4221286447885026450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4404446587026596729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 86060ed036799524b91f4fba5ca6ff37, type: 3}

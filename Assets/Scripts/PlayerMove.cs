@@ -17,12 +17,14 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] private GameObject model;
 
-    [SerializeField] private RectTransform imageSpeed;
+    [SerializeField] private RectTransform imageSpeed, imageAero;
+    [SerializeField] private GameObject speedUI, aeroUI;
+
     private Vector2 _direction;
     private bool _isAero = false;
     private float _currentXRotation = 0f;
     private float _currentYRotation = 0f;
-    [SerializeField] private bool _notBlockWas = false;
+    private bool _notBlockWas = false;
     private const float AngleEpsilon = 1;
     private float _speed;
 
@@ -50,7 +52,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         _speed = Mathf.Clamp(_speed, 0, maxSpeed);
-        
+
         SetUISpeed();
     }
 
@@ -231,16 +233,28 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    public void SetUISpeed()
+    private void SetUISpeed()
     {
-        if (imageSpeed == null)
+        if (speedUI==null)
         {
             return;
         }
         
+        aeroUI.SetActive(_isAero);
+        speedUI.SetActive(!_isAero);
+
+
+        RectTransform image = _isAero ? imageAero : model.GetComponent<RectTransform>();
+
+
+        if (imageSpeed == null)
+        {
+            return;
+        }
+
         float scaleX = GetSpeed() / maxSpeed;
 
-        
+
         Vector3 scale = imageSpeed.localScale;
         scale.x = scaleX;
         imageSpeed.localScale = scale;
