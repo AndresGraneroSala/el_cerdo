@@ -10,18 +10,18 @@ public class Shoot : MonoBehaviour
     private float _timer;
     private Pool _pool;
     private bool _isShooting;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _pool = PoolManager.instance.GetPool(poolName, poolSize,bulletPrefab);
+        _pool = PoolManager.Instance.GetPool(poolName, poolSize, bulletPrefab);
     }
 
     public void SetIsShooting(bool isShooting)
     {
         _isShooting = isShooting;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -29,23 +29,23 @@ public class Shoot : MonoBehaviour
         {
             return;
         }
-        
+
         if (!_isShooting)
         {
             _timer = timeBetweenBullets;
-            return; 
+            return;
         }
-        
+
         _timer += Time.deltaTime;
 
         if (_timer >= timeBetweenBullets)
         {
-            GameObject bullet = _pool.nextObject();
-            
+            GameObject bullet = _pool.NextObject();
+
             bullet.transform.position = spawnBullet.position;
             bullet.transform.rotation = spawnBullet.rotation;
             bullet.SetActive(true);
-            
+
             _timer = 0;
         }
     }

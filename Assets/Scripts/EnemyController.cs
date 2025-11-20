@@ -8,21 +8,21 @@ public class EnemyController : MonoBehaviour
         Follow,
         Attack
     }
-    
+
     [SerializeField] private float moveSpeed = 0.5f, patrolSpeed = 0.1f;
     [SerializeField] private Transform[] patrolTargets;
     [SerializeField] private float proximityRange = 1f;
     [SerializeField] private float distanceForget = 20;
     [SerializeField] private Vector3 detectionBoxSize = new Vector3(10, 5, 15);
     [SerializeField] private float attackRange = 5f;
-    
+
     private int _indexPatrol = 0;
     private EnemyState _enemyState;
     private Transform _target;
     private Shoot _shoot;
     private EnemyMove _enemyMove;
     private float _distanceToTarget;
-    
+
     private void Awake()
     {
         _shoot = GetComponent<Shoot>();
@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour
                 StateAttack();
                 break;
         }
-        
+
         FollowTarget();
     }
 
@@ -68,14 +68,14 @@ public class EnemyController : MonoBehaviour
                 return;
             }
         }
-        
+
         if (_distanceToTarget < proximityRange)
         {
             _indexPatrol = (_indexPatrol + 1) % patrolTargets.Length;
             _target = patrolTargets[_indexPatrol];
         }
     }
-    
+
     private void StateFollow()
     {
         if (_distanceToTarget >= distanceForget)
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour
     private void StateAttack()
     {
         _shoot.SetIsShooting(true);
-        
+
         if (_distanceToTarget > attackRange)
         {
             _enemyState = EnemyState.Follow;
@@ -117,7 +117,7 @@ public class EnemyController : MonoBehaviour
         Vector3 localPlayerPos = transform.InverseTransformPoint(playerPosition);
 
         Vector3 boxCenter = new Vector3(0, 0, detectionBoxSize.z / 2f);
-        
+
         return Mathf.Abs(localPlayerPos.x - boxCenter.x) <= detectionBoxSize.x / 2f &&
                Mathf.Abs(localPlayerPos.y - boxCenter.y) <= detectionBoxSize.y / 2f &&
                Mathf.Abs(localPlayerPos.z - boxCenter.z) <= detectionBoxSize.z / 2f;
@@ -129,20 +129,20 @@ public class EnemyController : MonoBehaviour
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
         Vector3 boxCenter = new Vector3(0, 0, detectionBoxSize.z / 2f);
         Gizmos.DrawWireCube(boxCenter, detectionBoxSize);
-        
+
         Gizmos.matrix = Matrix4x4.identity;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-        
+
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, distanceForget);
-        
+
         if (_target != null)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, _target.position);
         }
-        
+
         if (patrolTargets != null && patrolTargets.Length > 0)
         {
             Gizmos.color = Color.white;

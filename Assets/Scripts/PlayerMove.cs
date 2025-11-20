@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -80,7 +78,7 @@ public class PlayerMove : MonoBehaviour
         _direction = dir;
     }
 
-    
+
 
     private void Start()
     {
@@ -205,11 +203,11 @@ public class PlayerMove : MonoBehaviour
 
     private void SetUISpeed()
     {
-        if (speedUI==null)
+        if (speedUI == null)
         {
             return;
         }
-        
+
         aeroUI.SetActive(_isAero);
         speedUI.SetActive(!_isAero);
 
@@ -217,7 +215,7 @@ public class PlayerMove : MonoBehaviour
         RectTransform image = _isAero ? imageAero : model.GetComponent<RectTransform>();
 
 
-        if (image == null)
+        if (!image)
         {
             return;
         }

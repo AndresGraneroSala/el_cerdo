@@ -1,13 +1,11 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Manager1 : MonoBehaviour
 {
     public static Manager1 Instance;
-    
+
     [SerializeField] private GameObject instructions;
-    
+
     private int _totalScore, _score;
 
     private void Awake()
@@ -50,17 +48,15 @@ public class Manager1 : MonoBehaviour
     {
         _score++;
 
-        if (_score>=_totalScore)
+        if (_score >= _totalScore)
         {
             Win();
         }
-        
     }
     
-
     private void Win()
     {
         GameManager.Instance.ShowScore();
     }
-    
+
 }

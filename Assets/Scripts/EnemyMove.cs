@@ -30,7 +30,7 @@ public class EnemyMove : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
         
-        transform.position += transform.forward * _currentSpeed * Time.deltaTime;
+        transform.position += transform.forward * (_currentSpeed * Time.deltaTime);
     }
 
     private Vector3 CalculateSeparation()
@@ -40,11 +40,11 @@ public class EnemyMove : MonoBehaviour
 
         Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, separationRadius);
         
-        foreach (Collider collider in nearbyEnemies)
+        foreach (Collider enemyCollider in nearbyEnemies)
         {
-            if (collider.CompareTag("Enemy") && collider.gameObject != this.gameObject)
+            if (enemyCollider.CompareTag("Enemy") && enemyCollider.gameObject != this.gameObject)
             {
-                Vector3 directionAway = transform.position - collider.transform.position;
+                Vector3 directionAway = transform.position - enemyCollider.transform.position;
                 float distance = directionAway.magnitude;
                 
                 if (distance > 0)

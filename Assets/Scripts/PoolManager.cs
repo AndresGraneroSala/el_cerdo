@@ -1,18 +1,17 @@
 using System;
-using UnityEditor.Search;
 using UnityEngine;
 using System.Collections.Generic;
 
 public class PoolManager : MonoBehaviour
 {
-    public static PoolManager instance;
+    public static PoolManager Instance;
     [SerializeField] private List<Pool> pools;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -75,7 +74,7 @@ public class PoolManager : MonoBehaviour
             children.Add(obj);
         }
         
-        pool.init(parent, children);
+        pool.Init(parent, children);
         
     }
     
@@ -108,9 +107,9 @@ public class Pool
     public string poolName;
     public int poolSize;
     public GameObject prefab;
-    private List<GameObject> objects;
-    private int index=0;
-    private Transform parent;
+    private List<GameObject> _objects;
+    private int _index=0;
+    private Transform _parent;
 
     public Pool(string poolName, int poolSize, GameObject prefab)
     {
@@ -119,19 +118,18 @@ public class Pool
         this.prefab = prefab;
     }
     
-    public void init(Transform parent, List<GameObject> objects)
+    public void Init(Transform parent, List<GameObject> objects)
     {
-        this.parent = parent;
-        this.objects = objects;
+        this._parent = parent;
+        this._objects = objects;
     }
 
-    public GameObject nextObject()
+    public GameObject NextObject()
     {
-        // Busca el siguiente objeto inactivo
-        for (int i = 0; i < objects.Count; i++)
+        for (int i = 0; i < _objects.Count; i++)
         {
-            GameObject obj = objects[index];
-            index = (index + 1) % objects.Count;
+            GameObject obj = _objects[_index];
+            _index = (_index + 1) % _objects.Count;
 
             if (!obj.activeSelf)
             {
@@ -139,19 +137,14 @@ public class Pool
                 return obj;
             }
         }
-
-        // Si todos están activos, puedes:
-        // 1️⃣ Devolver null (no hay disponibles)
-        // 2️⃣ O crear uno nuevo dinámicamente
-        // Aquí optamos por null:
+        
         Debug.LogWarning($"[Pool '{poolName}'] No hay objetos disponibles en el pool.");
         return null;
     }
 
-    public void pullObject(GameObject obj)
+    public void PullObject(GameObject obj)
     {
-        //objects.Add(obj);
         obj.SetActive(false);
-        obj.transform.SetParent(parent);
+        obj.transform.SetParent(_parent);
     }
 }

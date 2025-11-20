@@ -7,9 +7,9 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    
-    public GameObject Player {get; private set;}
-    
+
+    public GameObject Player { get; private set; }
+
     public GameObject pauseMenu;
 
     public bool IsPause { get; private set; }
@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviour
     private float _timer;
     [SerializeField] private GameObject scoreUI;
 
-    [SerializeField] private TextMeshProUGUI textTimer,textRank,textNextScore;
+    [SerializeField] private TextMeshProUGUI textTimer, textRank, textNextScore;
     [SerializeField] private int[] timesRanks;
-    [SerializeField] private string phrasePlayerScoreObtained,phraseNextScore;
-    
+    [SerializeField] private string phrasePlayerScoreObtained, phraseNextScore;
+
     [SerializeField] private string sceneNextLevel;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,18 +36,18 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         Player = GameObject.FindGameObjectWithTag("Player");
         scoreUI.SetActive(false);
     }
-    
+
     private void Update()
     {
         _timer += Time.deltaTime;
         int minutes = (int)(_timer / 60f);
         int seconds = (int)(_timer % 60f);
         textTimer.text = $"{minutes:00}:{seconds:00}";
-        
+
     }
 
     public void ShowScore()
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         scoreUI.SetActive(true);
 
     }
-    
+
     private char GetRank()
     {
         if (timesRanks == null || timesRanks.Length == 0)
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     private String GetNextScore()
     {
         string phrase = "";
-        
+
         if (timesRanks == null || timesRanks.Length == 0)
         {
             return "No scores defined";
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         int score = timesRanks[indexScore] - timesRanks[indexScore - 1];
 
         phrase += $"{phraseNextScore} {IntToTime(score)}";
-        
+
         return phrase;
     }
 
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        
+
         if (pauseMenu.activeInHierarchy)
         {
             ResumeGame();
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
     }
-    
+
     public void PauseGame()
     {
         IsPause = true;

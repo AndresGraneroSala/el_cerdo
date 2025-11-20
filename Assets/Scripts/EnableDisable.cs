@@ -6,13 +6,6 @@ public class EnableDisable : MonoBehaviour
 
     public void SwitchAct()
     {
-        if (obj.activeInHierarchy)
-        {
-            obj.SetActive(false);
-        }
-        else
-        {
-            obj.SetActive(true);
-        }
+        obj.SetActive(!obj.activeInHierarchy);
     }
 }

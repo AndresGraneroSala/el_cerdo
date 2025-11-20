@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
         _playerMove = GetComponent<PlayerMove>();
         _shoot = GetComponent<Shoot>();
         aerocrobaticAction.action.Enable();
-
     }
 
     private void OnEnable()
