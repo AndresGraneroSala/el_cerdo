@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7655693098049886736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -331.005}
-  m_SizeDelta: {x: 1200, y: 220.67001}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 68.994995}
+  m_SizeDelta: {x: 0, y: -579.32996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4418371633030975279
 CanvasRenderer:
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 140387662313981626}
   - component: {fileID: 6738701019897137301}
   - component: {fileID: 5576448616221371960}
-  - component: {fileID: 7389645514382982037}
+  - component: {fileID: 2930487424626371953}
   m_Layer: 0
   m_Name: Next
   m_TagString: Untagged
@@ -655,7 +655,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.15686275, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -687,7 +687,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7389645514382982037
+--- !u!114 &2930487424626371953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -696,10 +696,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3533979428934381984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e1471fdf6a0507c86d24b729a20a66, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cb9948f4501f8441b5e070e9523d8c4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
-  nameScene: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonEnableSelectUI
 --- !u!1 &3816638263321070425
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1635636131394566505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -790,8 +789,9 @@ MonoBehaviour:
   textRank: {fileID: 7174249192835239192}
   textNextScore: {fileID: 254993130845012176}
   timesRanks: 1e0000003c0000005a000000
-  phraseNextScore: "El siguiente rango tiene la puntuaci\xF3n"
-  sceneNextLevel: 
+  phrasePlayerScoreObtained: "Tu puntuaci\xF3n es de"
+  phraseNextScore: Para el siguiente rango haz
+  sceneNextLevel: Lvl2
 --- !u!1 &4671088780339064611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1029,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.15686275, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1099,7 +1099,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 123}
-  m_SizeDelta: {x: 1200, y: 800}
+  m_SizeDelta: {x: 1785.4578, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3689846386588727770
 CanvasRenderer:
@@ -1307,10 +1307,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7655693098049886736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -110.33501}
-  m_SizeDelta: {x: 1200, y: 220.67001}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 289.66498}
+  m_SizeDelta: {x: 0, y: -579.32996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3331640085743958585
 CanvasRenderer:
@@ -1519,10 +1519,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7655693098049886736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -620.67004}
-  m_SizeDelta: {x: 1200, y: 358.66}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -220.67004}
+  m_SizeDelta: {x: 0, y: -441.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1715240571763558616
 CanvasRenderer:
@@ -1552,7 +1552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Siguiente en 2155 segundos
+  m_text: "Tu puntuaci\xF3n es de 00:25. Para el siguiente rango haz 01:28"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
