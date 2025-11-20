@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     [FormerlySerializedAs("timesScore")] [SerializeField] private int[] timesRanks;
     [SerializeField] private string phraseNextScore;
     
-    [FormerlySerializedAs("nextLevel")] [SerializeField] private string sceneNextLevel;
+    [SerializeField] private string sceneNextLevel;
     
     private void Awake()
     {

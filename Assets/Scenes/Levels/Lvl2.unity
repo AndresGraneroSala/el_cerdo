@@ -877,7 +877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879d59c5634dd7842848b8858565b53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manager1
-  nextLevel: Lvl3
   instructions: {fileID: 2050384505}
 --- !u!4 &394955443
 Transform:
@@ -3232,6 +3231,22 @@ PrefabInstance:
     - target: {fileID: 5518391890516570158, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: sceneNextLevel
+      value: Lvl3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: 'timesRanks.Array.data[0]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: 'timesRanks.Array.data[1]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: 'timesRanks.Array.data[2]'
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
