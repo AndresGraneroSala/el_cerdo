@@ -6,7 +6,7 @@ public class Balloon : MonoBehaviour
     private bool exploded = false;
     private void Start()
     {
-        Manager1.instance.AddBalloon();
+        Manager1.Instance.AddBalloon();
     }
     
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public class Balloon : MonoBehaviour
         if (other.CompareTag("BulletP"))
         {
             exploded = true;
-            Manager1.instance.BalloonExplode();
+            Manager1.Instance.BalloonExplode();
             
             Destroy(gameObject);
         }

@@ -4,10 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Manager1 : MonoBehaviour
 {
-    public static Manager1 instance;
+    public static Manager1 Instance;
     
-    [SerializeField] private string nextLevel = "Lvl2";
-
     [SerializeField] private GameObject instructions;
     
     private int _totalScore, _score;
@@ -15,9 +13,9 @@ public class Manager1 : MonoBehaviour
     private void Awake()
     {
 
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -33,15 +31,13 @@ public class Manager1 : MonoBehaviour
 
     private void OpenTutorial()
     {
-        GameManager.Instance.isBlockedPause = true;
-        GameManager.Instance.PauseGame();
+        GameManager.Instance.PauseGameAndBlock();
         instructions.SetActive(true);
     }
 
     public void CloseTutorial()
     {
-        GameManager.Instance.isBlockedPause = false;
-        GameManager.Instance.ResumeGame();
+        GameManager.Instance.UnlockGame();
         instructions.SetActive(false);
     }
 
@@ -64,7 +60,7 @@ public class Manager1 : MonoBehaviour
 
     private void Win()
     {
-        SceneManager.LoadScene(nextLevel);
+        GameManager.Instance.ShowScore();
     }
     
 }
