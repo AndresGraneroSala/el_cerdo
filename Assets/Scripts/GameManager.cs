@@ -14,14 +14,14 @@ public class GameManager : MonoBehaviour
 
     public bool IsPause { get; private set; }
 
-    private bool isBlockedPause;
+    private bool _isBlockedPause;
 
     private float _timer;
     [SerializeField] private GameObject scoreUI;
 
     [SerializeField] private TextMeshProUGUI textTimer,textRank,textNextScore;
-    [FormerlySerializedAs("timesScore")] [SerializeField] private int[] timesRanks;
-    [SerializeField] private string phraseNextScore;
+    [SerializeField] private int[] timesRanks;
+    [SerializeField] private string phrasePlayerScoreObtained,phraseNextScore;
     
     [SerializeField] private string sceneNextLevel;
     
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     {
         if (timesRanks == null || timesRanks.Length == 0)
         {
-            return "No scores";
+            return "No scores defined";
         }
 
         int indexScore = 0;
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
         int score = timesRanks[indexScore] - timesRanks[indexScore - 1];
 
-        return $"{phraseNextScore} {IntToTime(score)}";
+        return $"{phrasePlayerScoreObtained} {IntToTime((int)_timer)}. {phraseNextScore} {IntToTime(score)}";
     }
 
     private string IntToTime(int totalSeconds)
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchPause()
     {
-        if (isBlockedPause)
+        if (_isBlockedPause)
         {
             return;
         }
@@ -136,18 +136,18 @@ public class GameManager : MonoBehaviour
     {
         IsPause = true;
         Time.timeScale = 0;
-        pauseMenu.SetActive(!isBlockedPause);
+        pauseMenu.SetActive(!_isBlockedPause);
     }
 
     public void PauseGameAndBlock()
     {
-        isBlockedPause = true;
+        _isBlockedPause = true;
         PauseGame();
     }
 
     public void UnlockGame()
     {
-        isBlockedPause = false;
+        _isBlockedPause = false;
         ResumeGame();
     }
 

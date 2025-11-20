@@ -3237,6 +3237,10 @@ PrefabInstance:
       value: Lvl3
       objectReference: {fileID: 0}
     - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: phraseNextScore
+      value: Para el siguiente rango haz
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: 'timesRanks.Array.data[0]'
       value: 60
       objectReference: {fileID: 0}
@@ -3247,6 +3251,10 @@ PrefabInstance:
     - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: 'timesRanks.Array.data[2]'
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: phrasePlayerScoreObtained
+      value: "Tu puntuaci\xF3n es"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
