@@ -11,6 +11,20 @@ namespace Ilumisoft.RadarSystem.UI
     {
         protected CanvasGroup CanvasGroup { get; set; }
 
+        [SerializeField] private GameObject iconUp, iconDown;
+
+        public void Up()
+        {
+            iconUp?.SetActive(true);
+            iconDown?.SetActive(false);
+        }
+
+        public void Down()
+        {
+            iconUp?.SetActive(false);
+            iconDown?.SetActive(true);
+        }
+        
         protected virtual void Awake()
         {
             CanvasGroup = GetComponent<CanvasGroup>();

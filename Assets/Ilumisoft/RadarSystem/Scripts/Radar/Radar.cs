@@ -13,27 +13,32 @@ namespace Ilumisoft.RadarSystem
         /// </summary>
         readonly Dictionary<LocatableComponent, LocatableIconComponent> locatableIconDictionary = new();
 
-        [SerializeField]
-        [Tooltip("The container icons will be added to")]
+        [SerializeField] [Tooltip("The container icons will be added to")]
         private RectTransform iconContainer;
 
-        [SerializeField, Min(1)]
-        [Tooltip("The detection range of the radar in meter")]
+        [SerializeField, Min(1)] [Tooltip("The detection range of the radar in meter")]
         private float range = 20;
 
-        [SerializeField]
-        [Tooltip("Whether the radar should apply the roation of the player")]
+        [SerializeField] [Tooltip("Whether the radar should apply the roation of the player")]
         private bool applyRotation = true;
 
         /// <summary>
         /// The detection range of the radar
         /// </summary>
-        public float Range { get => range; set => range = value; }
+        public float Range
+        {
+            get => range;
+            set => range = value;
+        }
 
         /// <summary>
         /// Whether the radar rotates with the player or not
         /// </summary>
-        public bool ApplyRotation { get=> applyRotation; set => applyRotation = value; }
+        public bool ApplyRotation
+        {
+            get => applyRotation;
+            set => applyRotation = value;
+        }
 
         /// <summary>
         /// Reference to the player
@@ -41,7 +46,7 @@ namespace Ilumisoft.RadarSystem
         public GameObject Player;
 
         public float minY = 3;
-        
+
         private void OnEnable()
         {
             LocatableManager.OnLocatableAdded += OnLocatableAdded;
@@ -61,7 +66,7 @@ namespace Ilumisoft.RadarSystem
         private void OnLocatableAdded(LocatableComponent locatable)
         {
             // Create the icon for the locatable and add a new entry to the dictionary
-            if(locatable != null && !locatableIconDictionary.ContainsKey(locatable))
+            if (locatable != null && !locatableIconDictionary.ContainsKey(locatable))
             {
                 var icon = locatable.CreateIcon();
 
@@ -138,7 +143,7 @@ namespace Ilumisoft.RadarSystem
             iconLocation *= scale;
 
             // Rotate the icon by the players y rotation if enabled
-            if(ApplyRotation)
+            if (ApplyRotation)
             {
                 // Get the forward vector of the player projected on the xz plane
                 var playerForwardDirectionXZ = Vector3.ProjectOnPlane(Player.transform.forward, Vector3.up);
@@ -158,11 +163,25 @@ namespace Ilumisoft.RadarSystem
                 iconLocation = new Vector2(rotatedIconLocation.x, rotatedIconLocation.z);
             }
 
-            if (iconLocation.sqrMagnitude < radarSize*radarSize || locatable.ClampOnRadar)
+            if (iconLocation.sqrMagnitude < radarSize * radarSize || locatable.ClampOnRadar)
             {
                 // Make sure it is not shown outside the radar
                 iconLocation = Vector2.ClampMagnitude(iconLocation, radarSize);
-                iconLocation.y = iconLocation.y<minY ? minY : iconLocation.y;
+                iconLocation.y = iconLocation.y < minY ? minY : iconLocation.y;
+
+                float heightDiff = locatable.transform.position.y - Player.transform.position.y;
+
+                if (locatableIconDictionary.TryGetValue(locatable, out var icon))
+                {
+                    if (icon is LocatableIcon locIcon)
+                    {
+                        if (heightDiff > 0)
+                            locIcon.Up();
+                        else
+                            locIcon.Down();
+                    }
+                }
+
                 return true;
             }
 
