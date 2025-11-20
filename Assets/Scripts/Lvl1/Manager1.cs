@@ -14,7 +14,6 @@ public class Manager1 : MonoBehaviour
 
     private void Awake()
     {
-        OpenTutorial();
 
         if (instance == null)
         {
@@ -26,15 +25,23 @@ public class Manager1 : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        OpenTutorial();
+
+    }
+
     private void OpenTutorial()
     {
-        Time.timeScale = 0;
+        GameManager.Instance.isBlockedPause = true;
+        GameManager.Instance.PauseGame();
         instructions.SetActive(true);
     }
 
     public void CloseTutorial()
     {
-        Time.timeScale = 1;
+        GameManager.Instance.isBlockedPause = false;
+        GameManager.Instance.ResumeGame();
         instructions.SetActive(false);
     }
 

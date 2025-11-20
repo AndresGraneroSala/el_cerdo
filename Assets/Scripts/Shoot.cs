@@ -25,6 +25,11 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.IsPause)
+        {
+            return;
+        }
+        
         if (!_isShooting)
         {
             _timer = timeBetweenBullets;
