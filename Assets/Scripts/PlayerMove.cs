@@ -53,7 +53,6 @@ public class PlayerMove : MonoBehaviour
 
         _speed = Mathf.Clamp(_speed, 0, maxSpeed);
 
-        SetUISpeed();
     }
 
     private void IncreaseSpeed()
@@ -81,35 +80,7 @@ public class PlayerMove : MonoBehaviour
         _direction = dir;
     }
 
-    public void SetSpeed(float speed)
-    {
-        if (speed < 0f)
-        {
-            return;
-        }
-
-        maxSpeed = speed;
-    }
-
-    public void SetDirection(Vector3 worldDirection)
-    {
-        worldDirection = worldDirection.normalized;
-
-        // 2. Convertir a espacio local
-        Vector3 localDir = transform.InverseTransformDirection(worldDirection);
-
-        // 3. Calcular ángulos de rotación necesarios
-        float targetYaw = Mathf.Atan2(localDir.x, localDir.z) * Mathf.Rad2Deg;
-        float targetPitch = -Mathf.Asin(localDir.y) * Mathf.Rad2Deg;
-
-        // 4. Convertir a valores normalizados (-1 a 1)
-        Vector2 normalizedInput = new Vector2(
-            Mathf.Clamp(targetYaw / 90f, -1f, 1f),
-            Mathf.Clamp(targetPitch / 90f, -1f, 1f)
-        );
-
-        _direction = normalizedInput;
-    }
+    
 
     private void Start()
     {
@@ -122,15 +93,14 @@ public class PlayerMove : MonoBehaviour
         _speed = maxSpeed;
     }
 
+    private void LateUpdate()
+    {
+        SetUISpeed();
+    }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        //constant move
         transform.position += transform.forward * GetSpeed();
-
-
-        //rotation quads
         Vector2 dir = _direction;
 
         _currentXRotation += GetSpeedRotation() * dir.y;
@@ -247,7 +217,7 @@ public class PlayerMove : MonoBehaviour
         RectTransform image = _isAero ? imageAero : model.GetComponent<RectTransform>();
 
 
-        if (imageSpeed == null)
+        if (image == null)
         {
             return;
         }
@@ -255,9 +225,9 @@ public class PlayerMove : MonoBehaviour
         float scaleX = GetSpeed() / maxSpeed;
 
 
-        Vector3 scale = imageSpeed.localScale;
+        Vector3 scale = image.localScale;
         scale.x = scaleX;
-        imageSpeed.localScale = scale;
+        image.localScale = scale;
 
     }
 }
