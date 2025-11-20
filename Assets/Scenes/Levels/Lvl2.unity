@@ -3487,7 +3487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: sceneNextLevel
-      value: Lvl3
+      value: MENU
       objectReference: {fileID: 0}
     - target: {fileID: 6032970486078059264, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: phraseNextScore
