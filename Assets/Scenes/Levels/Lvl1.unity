@@ -2026,6 +2026,7 @@ GameObject:
   - component: {fileID: 1683661253}
   - component: {fileID: 1683661252}
   - component: {fileID: 1683661251}
+  - component: {fileID: 1683661254}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2094,6 +2095,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683661254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683661250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e60e7af8fb78a45a0801dda63409ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISelectionRestorer
+  navigateAction: {fileID: -8784545083839296357, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  defaultSelection: {fileID: 0}
 --- !u!1 &1697562106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,6 +2661,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5518391890516570158, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134240289372763246, guid: fe2a07ef64dc8f141b288a058f3bb4d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
